@@ -1,8 +1,17 @@
-import { StyleSheet, Text, View, FlatList, Alert } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  FlatList,
+  Alert,
+  TouchableWithoutFeedback,
+  Keyboard,
+} from "react-native";
 import React, { useState } from "react";
 import Header from "./components/header";
 import { ToDoForm } from "./components/toDoForm";
 import AddToDo from "./components/addToDo";
+import Sandbox from "./components/sandbox";
 
 export default function App() {
   const [todos, setTodos] = useState([
@@ -12,12 +21,12 @@ export default function App() {
   ]);
 
   const submitHandler = (text) => {
-    if (text.length > 3) {
+    if (text.length > 4) {
       setTodos((prevToDos) => {
         return [{ text: text, key: Math.random().toString() }, ...prevToDos];
       });
     } else {
-      Alert.alert("Warning", "toDos Must be over 3 characters long!", [
+      Alert.alert("Warning", "toDos Must be over 4 characters long!", [
         { text: "Understood!", onPress: () => console.log("Alert closed!") },
       ]);
     }
@@ -30,20 +39,28 @@ export default function App() {
   };
 
   return (
-    <View style={styles.container}>
-      <Header />
-      <View style={styles.content}>
-        <AddToDo submitHandler={submitHandler} />
-        <View style={styles.list}>
-          <FlatList
-            data={todos}
-            renderItem={({ item }) => (
-              <ToDoForm item={item} pressHandler={pressHandler} />
-            )}
-          />
-        </View>
-      </View>
-    </View>
+    <Sandbox />
+    // <TouchableWithoutFeedback
+    //   onPress={() => {
+    //     Keyboard.dismiss();
+    //     console.log("Dismissed Keyboard");
+    //   }}
+    // >
+    //   <View style={styles.container}>
+    //     <Header />
+    //     <View style={styles.content}>
+    //       <AddToDo submitHandler={submitHandler} />
+    //       <View style={styles.list}>
+    //         <FlatList
+    //           data={todos}
+    //           renderItem={({ item }) => (
+    //             <ToDoForm item={item} pressHandler={pressHandler} />
+    //           )}
+    //         />
+    //       </View>
+    //     </View>
+    //   </View>
+    // </TouchableWithoutFeedback>
   );
 }
 
