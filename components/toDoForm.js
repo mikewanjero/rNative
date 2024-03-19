@@ -19,11 +19,11 @@ const styles = StyleSheet.create({
     marginTop: 16,
     borderColor: "#bbb",
     borderWidth: 1,
-    borderStyle: "dashed",
-    borderRadius: 10,
+    borderStyle: "solid",
+    borderRadius: 35,
     flexDirection: "row",
   },
   itemText: {
-    marginLeft: 10,
+    marginLeft: 20,
   },
 });
