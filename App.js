@@ -22,9 +22,10 @@ export default function App() {
 
   const submitHandler = (text) => {
     if (text.length > 4) {
-      setTodos((prevToDos) => {
-        return [{ text: text, key: Math.random().toString() }, ...prevToDos];
-      });
+      setTodos((prevToDos) => [
+        { text, key: Math.random().toString() },
+        ...prevToDos,
+      ]);
     } else {
       Alert.alert("Warning", "toDos Must be over 4 characters long!", [
         { text: "Understood!", onPress: () => console.log("Alert closed!") },
@@ -33,9 +34,7 @@ export default function App() {
   };
 
   const pressHandler = (key) => {
-    setTodos((prevToDos) => {
-      return prevToDos.filter((todo) => todo.key != key);
-    });
+    setTodos((prevToDos) => prevToDos.filter((todo) => todo.key != key));
   };
 
   return (
